@@ -7,6 +7,7 @@ Created on Sat Jul  3 16:57:40 2021
 
 import pygame
 import pygame.time as GAME_TIME
+import math
 
 import bullet
 
@@ -28,7 +29,7 @@ class Enemy:
         self.rect.centery = y0
         
         # Tiempo entre disparos (en ms)
-        self.delay = 1000
+        self.delay = 1500
         self.lastShot = GAME_TIME.get_ticks()
         
         self.bullets = []
@@ -37,10 +38,12 @@ class Enemy:
         
         if GAME_TIME.get_ticks()-self.lastShot >= self.delay:
             angle = 0
-            while angle < 360:
+            while angle <= 360:
                 self.bullets.append(bullet.Bullet(self.surface, self.rect.centerx, 
-                                              self.rect.centery, 20, 0.25, angle))
-                angle += 22.5
+                                              self.rect.centery, 20, 
+                                              0.25+abs(0.1*math.sin(6*math.radians(angle))), 
+                                              angle))
+                angle += 5
             self.lastShot = GAME_TIME.get_ticks()
         
         for each in self.bullets:
@@ -50,5 +53,5 @@ class Enemy:
         for each in self.bullets:
             if each.isAlive() == False:
                 self.bullets.remove(each)
-        
+                
         self.surface.blit(self.image, self.rect)

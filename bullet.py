@@ -15,9 +15,9 @@ Observaciones:
     - Los ángulos en este caso irían en sentido antihorario (porque el eje y 
       va hacia abajo).
     - Al asignar un float a rect.centerx se almacena como entero, por lo que
-      si se redondea en cada frame la trayectoria se verá modificada. Esto
-      se puede solucionar sumando sobre un float y asignando ese float a
-      las coordenadas del objeto rectángulo, para no perder posición.
+      si se elimina la parte decimal en cada frame la trayectoria se verá 
+      modificada. Esto se puede solucionar sumando sobre un float y asignando 
+      ese float a las coordenadas del objeto rectángulo, para no perder posición.
 """
 
 import pygame
